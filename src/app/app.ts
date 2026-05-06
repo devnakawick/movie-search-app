@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +20,8 @@ export class App {
   constructor(private http: HttpClient) {}
 
   searchMovie() {
-    const apiKey = '8e4566fc62383d170fd11c8b12990669';
 
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${this.searchText}`;
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${environment.apiKey}&query=${this.searchText}`;
 
     this.http.get(url).subscribe((response) => {
       this.movies = (response as any).results;
